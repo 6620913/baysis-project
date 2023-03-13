@@ -1,0 +1,526 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basys.ai</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+</head>
+
+<body onload="popup()">
+
+    <div class="maincontainer">
+
+
+        <!-- left container start -->
+        <div class="leftcontainer">
+            <div class="leftlogo">
+                <img src="{% static 'images/logo.jpg' %}" alt="">
+            </div>
+
+            <div class=" leftmenu maincolor">
+
+                <div class="leftmele">
+
+
+                    <img src="{% static 'images/auth.JPG' %}" alt="">
+
+                </div>
+                <a class="leftmele" href="/" > Prior Authorization</a>
+
+            </div>
+            <div class=" home leftmenu">
+
+                <div class="leftmele">
+
+                    <img src="{% static 'images/claims.JPG' %}" alt="">
+
+                </div>
+                <a class="leftmele"> Claims</a>
+
+            </div>
+
+            <div class="leftmenu">
+                <div class="leftmele">
+                    <img src="{% static 'images/medical.JPG' %}" alt="">
+
+                </div>
+                <a class="leftmele lefttext"> Medical Records</a>
+
+
+            </div>
+            <div class="leftmenu">
+
+                <div class="leftmele">
+                    <img src="{% static 'images/profile.svg' %}" alt="">
+
+                </div>
+                <a class="leftmele lefttext"> My Profile</a>
+
+
+            </div>
+
+
+
+        </div>
+        <!-- left container end -->
+
+
+
+
+
+
+
+        <div class="rightcontainer">
+
+            <div class="container">
+
+
+
+                <!-- navright start  -->
+                <div class="navright">
+
+                    <div>
+
+                        <p class="headfont">*This is a demo login with limited but essential functionality
+                        </p>
+                        <h1 class="maincolor">Welcome Bayer!</h1>
+
+                    </div>
+
+
+
+                    <div class="navlist">
+                        <ul>
+
+                            <li class="search navitem">
+
+                                <img src="{% static 'images/search.svg' %}" alt="">
+                            </li>
+                            <li class="notification navitem">
+                                <img src="{% static 'images/notification.svg' %}" alt="">
+                            </li>
+                            <li class=" profile navitem">
+                                <img src="{% static 'images/profile.svg' %}" alt="">
+                            </li>
+                            <li class="upload navitem">
+                                <img src="{% static 'images/upload.JPG'%}" alt="">
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+
+                <!-- navright end  -->
+
+                <div class="managerequests maincolor">
+
+                    <div>
+                        <h2>Manage Claims!</h2>
+                    </div>
+
+                    <!-- start pending -->
+                    {% for i in claims %}
+                    <div class="pending">
+                        <h3></h3>
+
+                        <div class="claim pendingreq">
+
+                            <div class=" reqele reqstatus" >
+                                <!-- <div class="reqfont">Claim</div> -->
+                                <div class="pendingimg">
+                                    
+                                </div>
+
+
+                            </div>
+
+                            <div class="reqele" >
+                                <div class="reqfont">Claim ID: {{i.reqID}}</div>
+                                <div class="reqfont">Date : 1/24/2023</div>
+                                
+
+
+                            </div>
+                         
+
+                            <div class=" claim-d reqele">
+                                <!-- <Button class="appbtn ">Approve</Button> -->
+                                
+                                <a class="claim-btn"  id="{{i.reqID}}" href="/pop/{{i.reqID}}">View Details</a>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+                      
+    
+
+
+
+
+                    </div>
+
+                    {%endfor%}
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- model  -->
+          
+                {% for i in pop %}
+                <div id="overlay">
+
+                </div>
+
+              
+                <div id="popup" class="popup">
+                  
+                    <div class="top-btn">
+                        <!-- <div class="d-btn0"> -->
+                            <a class="btn0" href="/claims">
+                                &#10006;
+                            </a>
+                        <!-- </div> -->
+
+                    </div>
+                    <div class="pop-container">
+                        <div class="left-pop">
+
+                            <div class="lp lp1">
+
+                                <div class="lp1-img">
+
+                                </div>
+                                <div class="lp1-s2">
+
+                                    <div class="">Request ID:</div>
+                                    <div class="">Date of service</div>
+                                    <div class="">Status</div>
+
+                                </div>
+                                <div class="lp1-s3">
+                                    <div class="">{{i.reqID}}</div>
+                                    <div class="">{{i.date}}</div>
+                                    <div class="">{{i.status}}</div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="lp lp2">
+
+                                <div class="lp2-s1">
+
+                                    <div class="lp2-s1-icon">
+                                        <img src="{{i.profileimg.url}}" alt="">
+                                    </div>
+                                    <div class="lp2-s1-data">
+                                        <div class="lp2-s1-data-head">
+                                            {{i.name}}
+                                        </div>
+                                        <div>
+                                            {{i.dob}}({{i.age}}),{{i.gender}}
+                                        </div>
+                                        <div>
+                                            {{i.smokeing_status}}
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="lp2-s2">
+
+                                    <div class="lp2-s2-1">
+                                        <div class="lp2-s2-h">
+                                            EMPI/MRN
+                                        </div>
+                                        <div>
+                                            {{i.emp_mrn}}
+                                        </div>
+
+                                    </div>
+                                    <div class="lp2-s2-2">
+                                        <div class="lp2-s2-h">
+                                            Phone
+                                        </div>
+                                        <div>
+                                            {{i.phone}}
+                                        </div>
+
+
+                                    </div>
+                                    <div class="lp2-s2-3">
+                                        <div class="lp2-s2-h">
+                                            PCP
+                                        </div>
+                                        <div>
+                                            {{i.pcp}}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="lp lp3">
+                                <div class="lp3-s1">
+                                    <div class="lp3-s1-h lp3-s1-t">
+                                        {{i.doctor}}
+                                    </div>
+                                    <div class="lp3-s1-t">
+                                        {{i.docdisc1}}
+                                    </div>
+                                    <div class="lp3-s1-t">
+                                        {{i.docdisc2}}
+                                    </div>
+                                    <div class="lp3-s1-t">
+                                        {{i.docdisc1}}
+                                    </div>
+
+                                </div>
+                                <div class="lp3-s2">
+                                    <img src="{% static 'images/doctor.JPG' %}" alt="">
+                                </div>
+
+                            </div>
+                            <div class="lp lp4">
+                                <div class="lp4-s1">
+
+                                    <div class="lp4-s1-h">
+                                        <span>Pror Authorization</span>
+                                    </div>
+                                    <div class="lp4-s1-t">
+                                        <span>RID</span>: {{i.rID}}
+                                    </div>
+                                    <div class="lp4-s1-t">
+                                        <span>AuthID</span> {{i.authID}}
+                                    </div>
+                                    <div class="lp4-s1-t">
+                                        <span>Services Requested:</span> <br>{{i.services}}
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="right-pop">
+
+                            <div class="rp rp1">
+
+                                <div class="rp1-s1">
+
+                                    <div class="rp1-s1-h">
+                                        <span>Primary Player</span>
+                                    </div>
+                                    <div class="rp1-s1-t">
+                                        {{i.primary_player_disc}}
+                                    </div>
+                                    <div class="rp1-s1-t">
+                                        <span>EDI- </span> {{i.EDI}}
+                                    </div>
+                                    <div class="rp1-s1-t">
+                                        <span>Assignment- </span>{{i.Assignment}}
+                                    </div>
+                                    <div class="rp1-s1-t">
+                                        <span>Force Drop To Paper- </span>{{i.force_drop}}
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                            <div class="rp rp2">
+                                <div class="rp2-s1">
+                                    <div class="rp2-s1-h">
+                                        <span>Secondary Player</span>
+                                    </div>
+                                    <div class="rp2-s1-t">
+                                        {{i.secondary_player_disc}}
+                                    </div>
+                                    <div class="rp2-s1-t">
+                                        <span>EDI- </span> {{i.sEDI}}
+                                    </div>
+                                    <div class="rp2-s1-t">
+                                        <span>Assignment- </span>{{i.sAssignment}}
+                                    </div>
+                                    <div class="rp2-s1-t">
+                                        <span>Force Drop To Paper- </span>{{i.sforce_drop}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="rp rp3">
+
+                                <div class="rp3-s1">
+                                    <div class="rp3-cpt">
+                                            CPT
+                                    </div>
+                                    <div class="rp3-diag">
+                                        Diognosis
+
+                                    </div>
+                                    <div class="rp3-units">
+                                        Units
+
+                                    </div>
+                                    <div class="rp3-price">
+                                            Price
+                                    </div>
+
+                                </div>
+                                <div class="rp3-s2">
+                                    <div class="rp3-cptv">
+                                            {{i.CPT}}
+                                    </div>
+                                    <div class="rp3-diagv">
+                                        {{i.diag}}
+
+                                    </div>
+                                    <div class="rp3-unitsv">
+                                        {{i.units}}
+
+                                    </div>
+                                    <div class="rp3-pricev">
+                                            {{i.price}}
+                                    </div>
+
+                                </div>
+                                <div class="rp3-s3">
+                                    <div class="rp3-total">
+                                        Total : {{i.total}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="rp rp4">
+                                <div class="rp4-s1">
+                                    Note for Provider
+                                </div>
+                                <div class="rp4-s2">
+                                    <input type="text" placeholder="Text goes here...">
+                                </div>
+                                <div class="rp4-s3">
+                                    <div class="rp4-text">
+                                        <img src="{% static 'images/textarea.JPG'%}" alt="">
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                            <div class="rp5">
+                                <div class="rp5-buttons">
+                                        <div class="d-btn1">
+                                            <button class="btn1">
+                                                Reject with note
+                                            </button>
+                                        </div>
+                                        <div class="d-btn2">
+                                            <button class="btn2">
+                                                Approve
+                                            </button>
+                                        </div>
+                                    
+                                   
+                                </div>
+                            </div>
+                           
+                        </div>
+
+
+                        <!-- </div> -->
+
+                    </div>
+
+
+                </div>
+
+
+                <script>
+//                     console.log("in popup ");
+//                     // popup();
+//                     document.getElementById("popup").style.display="block";
+// document.getElementById("overlay").style.display="block";
+
+//                     </script>
+
+
+                {%endfor%}
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+<script src="{% static 'script.js' %}"></script>
+
+
+</body>
+
+</html>

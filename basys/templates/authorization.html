@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basys.ai</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <div class="maincontainer">
+
+
+        <!-- left container start -->
+        <div class="leftcontainer">
+            <div class="leftlogo">
+                <img src="{% static 'images/logo.jpg' %}" alt="">
+            </div>
+
+            <div class="home leftmenu maincolor">
+
+                <div class="leftmele">
+                   
+                    
+                        <img src="{% static 'images/auth.JPG' %}" alt="">
+                 
+                </div >
+                <a class="leftmele">  Prior Authorization</a>
+
+            </div>
+            <div class="leftmenu">
+                
+                <div class="leftmele">
+                   
+                    <img src="{% static 'images/claims.JPG' %}" alt="">
+                 
+                </div >
+                <a class="leftmele" href="/claims">  Claims</a>
+
+            </div>
+
+            <div class="leftmenu">
+                <div class="leftmele">
+                    <img src="{% static 'images/medical.JPG' %}" alt="">
+                 
+                </div >
+                <a class="leftmele lefttext"> Medical Records</a>
+               
+                
+            </div>
+            <div class="leftmenu">
+            
+                <div class="leftmele">
+                    <img src="{% static 'images/profile.svg' %}" alt="">
+                 
+                </div >
+                <a class="leftmele lefttext"> My Profile</a>
+
+                
+            </div>
+
+
+
+        </div>
+<!-- left container end -->
+
+
+
+
+
+
+
+        <div class="rightcontainer">
+
+            <div class="container">
+
+
+
+                <!-- navright start  -->
+                <div class="navright">
+
+                    <div>
+
+                        <p class="headfont">*This is a demo login with limited but essential functionality
+                        </p>
+                        <h1 class="maincolor">Welcome Bayer!</h1>
+
+                    </div>
+
+
+
+                    <div class="navlist">
+                        <ul>
+
+                            <li class="search navitem">
+                               
+                                <img src="{% static 'images/search.svg' %}" alt="">
+                            </li>
+                            <li class="notification navitem">
+                                <img src="{% static 'images/notification.svg' %}" alt="">
+                            </li>
+                            <li class=" profile navitem">
+                                <img src="{% static 'images/profile.svg' %}" alt="">
+                            </li>
+                            <li class="upload navitem">
+                                <img src="{% static 'images/upload.JPG' %}" alt="">
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+
+                <!-- navright end  -->
+
+                <!--  Manage Requests start  -->
+
+                <div class="managerequests maincolor">
+
+                    <div>
+                        <h2>Manage Requests</h2>
+                    </div>
+
+                    <!-- start pending -->
+                    <div class="pending">
+                        <h3>Pending</h3>
+
+                        {% for i in pendingreq %}
+                        <div class="pendingreq">
+
+                            <div class=" reqele reqstatus" >
+                                <div class="reqfont">Pending</div>
+                                <div class="pendingimg">
+                                    
+                                </div>
+
+
+                            </div>
+
+                            <div class="reqele" >
+                                <div class="reqfont">Request ID: {{i.reqID}}</div>
+                                <div class="reqfont">Date : {{i.date}}</div>
+                                <div class="pendingtxt">{{i.urgency}}</div>
+
+
+                            </div>
+                            <div class="reqele">
+                                <div class="reqfont">Services</div>
+                                <div class="pendingtxt">
+                                    {{i.services}}
+                                </div>
+                                <!-- <div class="pendingtxt">
+                                    - CPT 99211 x 2 visits Annualy
+                                </div> -->
+
+
+
+                            </div>
+
+                            <div class="reqele">
+                                <div class="reqfont">Requested By</div>
+                                <div class="pendingtxt">
+                                        {{i.requested_by}}
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="reqele">
+                                <Button class="appbtn ">Approve</Button>
+                                <a class="viewdet" href="">View Details</a>
+
+
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+
+
+                      
+    
+                            
+                    <!-- end pending
+                     -->
+
+                     <!-- start accepted -->
+
+                {% for i in accpreq %}
+                     <div class="accepted">
+                        <h3>Accepted</h3>
+
+
+                        <div class="accpreq">
+
+                            <div class="accpele reqstatus" >
+                                <div class="accpfont">Accepted</div>
+                                <div class="accpimg">
+                                  
+                                </div>
+
+
+                            </div>
+
+                            <div class="accpele">
+                            
+                                <div class="accpfont ">Request ID: {{i.reqID}}</div>
+                                <div class="accpfont">Date : {{i.date}}</div>
+                                <div class="pendingtxt">{{i.urgency}}</div>
+
+
+                            </div>
+                            <div class="accpele">
+                                <div class="accpfont">Services</div>
+                                <div class="pendingtxt">
+                                    {{i.services}}
+                                </div>
+
+
+                            </div>
+
+                            <div class="accpele">
+                                <div class="accpfont">Requested By</div>
+                                <div class="pendingtxt">
+                                    {{i.requested_by}}
+                            </div>
+
+
+                            </div>
+
+                            <div class="accpele">
+                               
+                                <a class=" viewdet " href="">View Details</a>
+
+
+
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
+                        <!-- <div class="accpreq">
+
+                            <div class="accpele reqstatus">
+                                <div class="accpfont">Accepted</div>
+                                <div class="accpimg"></div>
+
+                            </div>
+
+                            <div class="accpele">
+                                <div class="accpfont">Request ID</div>
+                                <div class="accpfont">Date</div>
+                                <div>Medium Urgency</div>
+
+
+                            </div>
+                            <div class="accpele">
+                                <div class="accpfont">Services</div>
+
+
+
+                            </div>
+
+                            <div class="accpele">
+                                <div class="accpfont">Requested By</div>
+
+
+
+                            </div>
+
+                            <div class="accpele">
+                               
+                                <a  class="viewdet" href="">View Details</a>
+
+
+
+                            </div>
+
+                        </div>
+
+                       
+ -->
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
